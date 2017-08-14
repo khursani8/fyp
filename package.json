@@ -10,7 +10,7 @@
     "react": "16.0.0-alpha.12",
     "react-native": "https://github.com/expo/react-native/archive/sdk-19.0.0.tar.gz",
     "react-native-easy-grid": "^0.1.14",
-    "react-native-modal-picker": "https://github.com/peacechen/react-native-modal-picker#keyboardShouldPersistTaps_prop",
+    "react-native-modal-picker": "0.0.16",
     "react-navigation": "^1.0.0-beta.11"
   }
 }

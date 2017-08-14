@@ -14,18 +14,20 @@ class BusList extends Component {
   }
   componentWillMount() {
     const { navigate } = this.props.navigation;
+    console.log('inside BusList page');
+    busNo = this.props.navigation.state.params.no
     var rows1 = [];
-    fetch('http://54.255.192.154:8000/searchBus/'+this.props.navigation.state.params.no)
+    fetch('http://54.255.201.153:8000/getETA/')
       .then((data)=>data.json())
       .then((dataJson)=>{
-
-        {dataJson.map(function(object, i){
+        console.log(dataJson);
+        {dataJson.res[2].map(function(object, i){
           console.log(i);
           rows1.push(
             <Row style={{height:100}} key={i}>
             <Col style={styles.col}>
               <Row style={styles.col}>
-                <Button light onPress={()=>navigate('Info',{bus_no:object.bus_no})} title={object.bus_no}></Button>
+                <Button light onPress={()=>navigate('Info',{bus_no:busNo})} title={busNo}></Button>
               </Row>
             </Col>
             <Col style={styles.col}>
@@ -36,7 +38,7 @@ class BusList extends Component {
               <Text>End: {object.RouteEnd}</Text>
               </Row>
               <Row>
-              <Text>ETA {object.est} MIN</Text>
+              <Text>ETA {object.eta} MIN</Text>
               </Row>
               <Row>
               <Text>CURRENT: {object.bus_location}</Text>

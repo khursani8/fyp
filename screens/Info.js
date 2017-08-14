@@ -14,27 +14,30 @@ class Info extends Component {
     }
     componentWillMount() {
     var rows1 = [];
+    console.log('link','http://54.255.201.153:8000/getRoute/'+this.props.navigation.state.params.bus_no);
     var {state} = this.props.navigation
-      fetch('http://54.255.192.154:8000/information/'+state.params.bus_no)
+      fetch('http://54.255.201.153:8000/getRoute/'+this.props.navigation.state.params.bus_no)
 
       .then((response) => response.json())
       .then((responseJson) => {
-         console.log('responseJsonkot',responseJson.res.length);
+         console.log('responseJsonkot',responseJson);
          {responseJson.res.map(function(object, i){
+           console.log(responseJson.res.length-1,i);
           if(responseJson.res.length-1 === i){
+            
             rows1.push(<View key={i}>
-            <Text>{object.current_Stop}</Text>
+            <Text>{object.current_stop}</Text>
             <Text>           |</Text>
             <Text>           |  {object.bus_time} minutes</Text>
             <Text>           |</Text>
             <Text>          V</Text>
-            <Text>{object.next_Stop}</Text>
+            <Text>{object.next_stop}</Text>
             </View>
           )
         }
         else
           rows1.push(<View key={i}>
-            <Text>{object.current_Stop}</Text>
+            <Text>{object.current_stop}</Text>
             <Text>           |</Text>
             <Text>           |  {object.bus_time} minutes</Text>
             <Text>           |</Text>
